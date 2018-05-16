@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QLSVEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CTDTs" EntityType="QLSVModel.CTDT" />
+    <EntitySet Name="GiaoViens" EntityType="QLSVModel.GiaoVien" />
+    <EntitySet Name="HocPhis" EntityType="QLSVModel.HocPhi" />
+    <EntitySet Name="InfoKyHocs" EntityType="QLSVModel.InfoKyHoc" />
+    <EntitySet Name="KhoiHocs" EntityType="QLSVModel.KhoiHoc" />
+    <EntitySet Name="KQHTs" EntityType="QLSVModel.KQHT" />
+    <EntitySet Name="KyHocs" EntityType="QLSVModel.KyHoc" />
+    <EntitySet Name="LopDTs" EntityType="QLSVModel.LopDT" />
+    <EntitySet Name="LopHocs" EntityType="QLSVModel.LopHoc" />
+    <EntitySet Name="MonHocs" EntityType="QLSVModel.MonHoc" />
+    <EntitySet Name="NamHocs" EntityType="QLSVModel.NamHoc" />
+    <EntitySet Name="NganhHocs" EntityType="QLSVModel.NganhHoc" />
+    <EntitySet Name="PhongHocs" EntityType="QLSVModel.PhongHoc" />
+    <EntitySet Name="SinhViens" EntityType="QLSVModel.SinhVien" />
+    <EntitySet Name="sysdiagrams" EntityType="QLSVModel.sysdiagram" />
+    <EntitySet Name="TinTucs" EntityType="QLSVModel.TinTuc" />
+    <AssociationSet Name="FK_CTDT_MonHoc" Association="QLSVModel.FK_CTDT_MonHoc">
+      <End Role="MonHoc" EntitySet="MonHocs" />
+      <End Role="CTDT" EntitySet="CTDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDT_NganhHoc" Association="QLSVModel.FK_CTDT_NganhHoc">
+      <End Role="NganhHoc" EntitySet="NganhHocs" />
+      <End Role="CTDT" EntitySet="CTDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_CTDT" Association="QLSVModel.FK_LopDT_CTDT">
+      <End Role="CTDT" EntitySet="CTDTs" />
+      <End Role="LopDT" EntitySet="LopDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_GiaoVien" Association="QLSVModel.FK_LopDT_GiaoVien">
+      <End Role="GiaoVien" EntitySet="GiaoViens" />
+      <End Role="LopDT" EntitySet="LopDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TinTuc_GiaoVien" Association="QLSVModel.FK_TinTuc_GiaoVien">
+      <End Role="GiaoVien" EntitySet="GiaoViens" />
+      <End Role="TinTuc" EntitySet="TinTucs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HocPhi_InfoKyHoc" Association="QLSVModel.FK_HocPhi_InfoKyHoc">
+      <End Role="InfoKyHoc" EntitySet="InfoKyHocs" />
+      <End Role="HocPhi" EntitySet="HocPhis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HocPhi_SinhVien" Association="QLSVModel.FK_HocPhi_SinhVien">
+      <End Role="SinhVien" EntitySet="SinhViens" />
+      <End Role="HocPhi" EntitySet="HocPhis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InfoKyHoc_KyHoc" Association="QLSVModel.FK_InfoKyHoc_KyHoc">
+      <End Role="KyHoc" EntitySet="KyHocs" />
+      <End Role="InfoKyHoc" EntitySet="InfoKyHocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InfoKyHoc_NamHoc" Association="QLSVModel.FK_InfoKyHoc_NamHoc">
+      <End Role="NamHoc" EntitySet="NamHocs" />
+      <End Role="InfoKyHoc" EntitySet="InfoKyHocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_InfoKyHoc" Association="QLSVModel.FK_LopDT_InfoKyHoc">
+      <End Role="InfoKyHoc" EntitySet="InfoKyHocs" />
+      <End Role="LopDT" EntitySet="LopDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NganhHoc_KhoiHoc" Association="QLSVModel.FK_NganhHoc_KhoiHoc">
+      <End Role="KhoiHoc" EntitySet="KhoiHocs" />
+      <End Role="NganhHoc" EntitySet="NganhHocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQHT_LopDT" Association="QLSVModel.FK_KQHT_LopDT">
+      <End Role="LopDT" EntitySet="LopDTs" />
+      <End Role="KQHT" EntitySet="KQHTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQHT_MonHoc" Association="QLSVModel.FK_KQHT_MonHoc">
+      <End Role="MonHoc" EntitySet="MonHocs" />
+      <End Role="KQHT" EntitySet="KQHTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQHT_SinhVien" Association="QLSVModel.FK_KQHT_SinhVien">
+      <End Role="SinhVien" EntitySet="SinhViens" />
+      <End Role="KQHT" EntitySet="KQHTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_LopHoc" Association="QLSVModel.FK_LopDT_LopHoc">
+      <End Role="LopHoc" EntitySet="LopHocs" />
+      <End Role="LopDT" EntitySet="LopDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_PhongHoc" Association="QLSVModel.FK_LopDT_PhongHoc">
+      <End Role="PhongHoc" EntitySet="PhongHocs" />
+      <End Role="LopDT" EntitySet="LopDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopHoc_NganhHoc" Association="QLSVModel.FK_LopHoc_NganhHoc">
+      <End Role="NganhHoc" EntitySet="NganhHocs" />
+      <End Role="LopHoc" EntitySet="LopHocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SinhVien_LopHoc" Association="QLSVModel.FK_SinhVien_LopHoc">
+      <End Role="LopHoc" EntitySet="LopHocs" />
+      <End Role="SinhVien" EntitySet="SinhViens" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CTDT">
+    <Key>
+      <PropertyRef Name="IDCTDT" />
+    </Key>
+    <Property Name="IDCTDT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDNganhHoc" Type="Int32" />
+    <Property Name="IDMonHoc" Type="Int32" />
+    <Property Name="KyHoc" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="MonHoc" Relationship="QLSVModel.FK_CTDT_MonHoc" FromRole="CTDT" ToRole="MonHoc" />
+    <NavigationProperty Name="NganhHoc" Relationship="QLSVModel.FK_CTDT_NganhHoc" FromRole="CTDT" ToRole="NganhHoc" />
+    <NavigationProperty Name="LopDTs" Relationship="QLSVModel.FK_LopDT_CTDT" FromRole="CTDT" ToRole="LopDT" />
+  </EntityType>
+  <EntityType Name="GiaoVien">
+    <Key>
+      <PropertyRef Name="IDGiaoVien" />
+    </Key>
+    <Property Name="IDGiaoVien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CMND" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Male" Type="Boolean" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LopDTs" Relationship="QLSVModel.FK_LopDT_GiaoVien" FromRole="GiaoVien" ToRole="LopDT" />
+    <NavigationProperty Name="TinTucs" Relationship="QLSVModel.FK_TinTuc_GiaoVien" FromRole="GiaoVien" ToRole="TinTuc" />
+  </EntityType>
+  <EntityType Name="HocPhi">
+    <Key>
+      <PropertyRef Name="IDHocPhi" />
+    </Key>
+    <Property Name="IDHocPhi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDInfoKyHoc" Type="Int32" />
+    <Property Name="IDSinhVien" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+    <Property Name="Paid" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="InfoKyHoc" Relationship="QLSVModel.FK_HocPhi_InfoKyHoc" FromRole="HocPhi" ToRole="InfoKyHoc" />
+    <NavigationProperty Name="SinhVien" Relationship="QLSVModel.FK_HocPhi_SinhVien" FromRole="HocPhi" ToRole="SinhVien" />
+  </EntityType>
+  <EntityType Name="InfoKyHoc">
+    <Key>
+      <PropertyRef Name="IDInfoKyHoc" />
+    </Key>
+    <Property Name="IDInfoKyHoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDNamHoc" Type="Int32" />
+    <Property Name="IDKyHoc" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhiTC" Type="Int32" />
+    <NavigationProperty Name="HocPhis" Relationship="QLSVModel.FK_HocPhi_InfoKyHoc" FromRole="InfoKyHoc" ToRole="HocPhi" />
+    <NavigationProperty Name="KyHoc" Relationship="QLSVModel.FK_InfoKyHoc_KyHoc" FromRole="InfoKyHoc" ToRole="KyHoc" />
+    <NavigationProperty Name="NamHoc" Relationship="QLSVModel.FK_InfoKyHoc_NamHoc" FromRole="InfoKyHoc" ToRole="NamHoc" />
+    <NavigationProperty Name="LopDTs" Relationship="QLSVModel.FK_LopDT_InfoKyHoc" FromRole="InfoKyHoc" ToRole="LopDT" />
+  </EntityType>
+  <EntityType Name="KhoiHoc">
+    <Key>
+      <PropertyRef Name="IDKhoiHoc" />
+    </Key>
+    <Property Name="IDKhoiHoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKhoiHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NganhHocs" Relationship="QLSVModel.FK_NganhHoc_KhoiHoc" FromRole="KhoiHoc" ToRole="NganhHoc" />
+  </EntityType>
+  <EntityType Name="KQHT">
+    <Key>
+      <PropertyRef Name="IDKQHT" />
+    </Key>
+    <Property Name="IDKQHT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDSinhVien" Type="Int32" />
+    <Property Name="IDLopDT" Type="Int32" />
+    <Property Name="DTP" Type="Double" />
+    <Property Name="DT" Type="Double" />
+    <Property Name="DTK" Type="Double" />
+    <Property Name="Pass" Type="Boolean" />
+    <Property Name="IDMonHoc" Type="Int32" />
+    <NavigationProperty Name="LopDT" Relationship="QLSVModel.FK_KQHT_LopDT" FromRole="KQHT" ToRole="LopDT" />
+    <NavigationProperty Name="MonHoc" Relationship="QLSVModel.FK_KQHT_MonHoc" FromRole="KQHT" ToRole="MonHoc" />
+    <NavigationProperty Name="SinhVien" Relationship="QLSVModel.FK_KQHT_SinhVien" FromRole="KQHT" ToRole="SinhVien" />
+  </EntityType>
+  <EntityType Name="KyHoc">
+    <Key>
+      <PropertyRef Name="IDKyHoc" />
+    </Key>
+    <Property Name="IDKyHoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenHocKy" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="InfoKyHocs" Relationship="QLSVModel.FK_InfoKyHoc_KyHoc" FromRole="KyHoc" ToRole="InfoKyHoc" />
+  </EntityType>
+  <EntityType Name="LopDT">
+    <Key>
+      <PropertyRef Name="IDLopDT" />
+    </Key>
+    <Property Name="IDLopDT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDInfoKyHoc" Type="Int32" />
+    <Property Name="IDCTDT" Type="Int32" />
+    <Property Name="IDGiaoVien" Type="Int32" />
+    <Property Name="TimeStart" Type="DateTime" Precision="0" />
+    <Property Name="TimeEnd" Type="DateTime" Precision="0" />
+    <Property Name="Date" Type="Int32" />
+    <Property Name="Tiet" Type="Int32" />
+    <Property Name="IDLopHoc" Type="Int32" />
+    <Property Name="IDPhongHoc" Type="Int32" />
+    <NavigationProperty Name="CTDT" Relationship="QLSVModel.FK_LopDT_CTDT" FromRole="LopDT" ToRole="CTDT" />
+    <NavigationProperty Name="GiaoVien" Relationship="QLSVModel.FK_LopDT_GiaoVien" FromRole="LopDT" ToRole="GiaoVien" />
+    <NavigationProperty Name="InfoKyHoc" Relationship="QLSVModel.FK_LopDT_InfoKyHoc" FromRole="LopDT" ToRole="InfoKyHoc" />
+    <NavigationProperty Name="KQHTs" Relationship="QLSVModel.FK_KQHT_LopDT" FromRole="LopDT" ToRole="KQHT" />
+    <NavigationProperty Name="LopHoc" Relationship="QLSVModel.FK_LopDT_LopHoc" FromRole="LopDT" ToRole="LopHoc" />
+    <NavigationProperty Name="PhongHoc" Relationship="QLSVModel.FK_LopDT_PhongHoc" FromRole="LopDT" ToRole="PhongHoc" />
+  </EntityType>
+  <EntityType Name="LopHoc">
+    <Key>
+      <PropertyRef Name="IDLopHoc" />
+    </Key>
+    <Property Name="IDLopHoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLopHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SiSo" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDNganhHoc" Type="Int32" />
+    <NavigationProperty Name="LopDTs" Relationship="QLSVModel.FK_LopDT_LopHoc" FromRole="LopHoc" ToRole="LopDT" />
+    <NavigationProperty Name="NganhHoc" Relationship="QLSVModel.FK_LopHoc_NganhHoc" FromRole="LopHoc" ToRole="NganhHoc" />
+    <NavigationProperty Name="SinhViens" Relationship="QLSVModel.FK_SinhVien_LopHoc" FromRole="LopHoc" ToRole="SinhVien" />
+  </EntityType>
+  <EntityType Name="MonHoc">
+    <Key>
+      <PropertyRef Name="IDMonHoc" />
+    </Key>
+    <Property Name="IDMonHoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenMonHoc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SoTC" Type="Int32" />
+    <Property Name="SoTiet" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="CTDTs" Relationship="QLSVModel.FK_CTDT_MonHoc" FromRole="MonHoc" ToRole="CTDT" />
+    <NavigationProperty Name="KQHTs" Relationship="QLSVModel.FK_KQHT_MonHoc" FromRole="MonHoc" ToRole="KQHT" />
+  </EntityType>
+  <EntityType Name="NamHoc">
+    <Key>
+      <PropertyRef Name="IDNamHoc" />
+    </Key>
+    <Property Name="IDNamHoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNamHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="InfoKyHocs" Relationship="QLSVModel.FK_InfoKyHoc_NamHoc" FromRole="NamHoc" ToRole="InfoKyHoc" />
+  </EntityType>
+  <EntityType Name="NganhHoc">
+    <Key>
+      <PropertyRef Name="IDNganhHoc" />
+    </Key>
+    <Property Name="IDNganhHoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDKhoiHoc" Type="Int32" />
+    <Property Name="NamDT" Type="Int32" />
+    <Property Name="SoKiHoc" Type="Int32" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="CTDTs" Relationship="QLSVModel.FK_CTDT_NganhHoc" FromRole="NganhHoc" ToRole="CTDT" />
+    <NavigationProperty Name="KhoiHoc" Relationship="QLSVModel.FK_NganhHoc_KhoiHoc" FromRole="NganhHoc" ToRole="KhoiHoc" />
+    <NavigationProperty Name="LopHocs" Relationship="QLSVModel.FK_LopHoc_NganhHoc" FromRole="NganhHoc" ToRole="LopHoc" />
+  </EntityType>
+  <EntityType Name="PhongHoc">
+    <Key>
+      <PropertyRef Name="IDPhongHoc" />
+    </Key>
+    <Property Name="IDPhongHoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaPhongHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenPhongHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="LopDTs" Relationship="QLSVModel.FK_LopDT_PhongHoc" FromRole="PhongHoc" ToRole="LopDT" />
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="IDSinhVien" />
+    </Key>
+    <Property Name="IDSinhVien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDLopHoc" Type="Int32" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CMND" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Male" Type="Boolean" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Born" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="YearJoin" Type="Int32" />
+    <NavigationProperty Name="HocPhis" Relationship="QLSVModel.FK_HocPhi_SinhVien" FromRole="SinhVien" ToRole="HocPhi" />
+    <NavigationProperty Name="KQHTs" Relationship="QLSVModel.FK_KQHT_SinhVien" FromRole="SinhVien" ToRole="KQHT" />
+    <NavigationProperty Name="LopHoc" Relationship="QLSVModel.FK_SinhVien_LopHoc" FromRole="SinhVien" ToRole="LopHoc" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="IDTinTuc" />
+    </Key>
+    <Property Name="IDTinTuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LinkFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThongBao" Type="Boolean" />
+    <Property Name="CountView" Type="Int32" />
+    <NavigationProperty Name="GiaoVien" Relationship="QLSVModel.FK_TinTuc_GiaoVien" FromRole="TinTuc" ToRole="GiaoVien" />
+  </EntityType>
+  <Association Name="FK_CTDT_MonHoc">
+    <End Type="QLSVModel.MonHoc" Role="MonHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.CTDT" Role="CTDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonHoc">
+        <PropertyRef Name="IDMonHoc" />
+      </Principal>
+      <Dependent Role="CTDT">
+        <PropertyRef Name="IDMonHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTDT_NganhHoc">
+    <End Type="QLSVModel.NganhHoc" Role="NganhHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.CTDT" Role="CTDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NganhHoc">
+        <PropertyRef Name="IDNganhHoc" />
+      </Principal>
+      <Dependent Role="CTDT">
+        <PropertyRef Name="IDNganhHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_CTDT">
+    <End Type="QLSVModel.CTDT" Role="CTDT" Multiplicity="0..1" />
+    <End Type="QLSVModel.LopDT" Role="LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CTDT">
+        <PropertyRef Name="IDCTDT" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDCTDT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_GiaoVien">
+    <End Type="QLSVModel.GiaoVien" Role="GiaoVien" Multiplicity="0..1" />
+    <End Type="QLSVModel.LopDT" Role="LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiaoVien">
+        <PropertyRef Name="IDGiaoVien" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDGiaoVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TinTuc_GiaoVien">
+    <End Type="QLSVModel.GiaoVien" Role="GiaoVien" Multiplicity="0..1" />
+    <End Type="QLSVModel.TinTuc" Role="TinTuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiaoVien">
+        <PropertyRef Name="IDGiaoVien" />
+      </Principal>
+      <Dependent Role="TinTuc">
+        <PropertyRef Name="CreateBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HocPhi_InfoKyHoc">
+    <End Type="QLSVModel.InfoKyHoc" Role="InfoKyHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.HocPhi" Role="HocPhi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoKyHoc">
+        <PropertyRef Name="IDInfoKyHoc" />
+      </Principal>
+      <Dependent Role="HocPhi">
+        <PropertyRef Name="IDInfoKyHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HocPhi_SinhVien">
+    <End Type="QLSVModel.SinhVien" Role="SinhVien" Multiplicity="0..1" />
+    <End Type="QLSVModel.HocPhi" Role="HocPhi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="IDSinhVien" />
+      </Principal>
+      <Dependent Role="HocPhi">
+        <PropertyRef Name="IDSinhVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InfoKyHoc_KyHoc">
+    <End Type="QLSVModel.KyHoc" Role="KyHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.InfoKyHoc" Role="InfoKyHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KyHoc">
+        <PropertyRef Name="IDKyHoc" />
+      </Principal>
+      <Dependent Role="InfoKyHoc">
+        <PropertyRef Name="IDKyHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InfoKyHoc_NamHoc">
+    <End Type="QLSVModel.NamHoc" Role="NamHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.InfoKyHoc" Role="InfoKyHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NamHoc">
+        <PropertyRef Name="IDNamHoc" />
+      </Principal>
+      <Dependent Role="InfoKyHoc">
+        <PropertyRef Name="IDNamHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_InfoKyHoc">
+    <End Type="QLSVModel.InfoKyHoc" Role="InfoKyHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.LopDT" Role="LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoKyHoc">
+        <PropertyRef Name="IDInfoKyHoc" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDInfoKyHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NganhHoc_KhoiHoc">
+    <End Type="QLSVModel.KhoiHoc" Role="KhoiHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.NganhHoc" Role="NganhHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhoiHoc">
+        <PropertyRef Name="IDKhoiHoc" />
+      </Principal>
+      <Dependent Role="NganhHoc">
+        <PropertyRef Name="IDKhoiHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQHT_LopDT">
+    <End Type="QLSVModel.LopDT" Role="LopDT" Multiplicity="0..1" />
+    <End Type="QLSVModel.KQHT" Role="KQHT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopDT">
+        <PropertyRef Name="IDLopDT" />
+      </Principal>
+      <Dependent Role="KQHT">
+        <PropertyRef Name="IDLopDT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQHT_MonHoc">
+    <End Type="QLSVModel.MonHoc" Role="MonHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.KQHT" Role="KQHT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonHoc">
+        <PropertyRef Name="IDMonHoc" />
+      </Principal>
+      <Dependent Role="KQHT">
+        <PropertyRef Name="IDMonHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQHT_SinhVien">
+    <End Type="QLSVModel.SinhVien" Role="SinhVien" Multiplicity="0..1" />
+    <End Type="QLSVModel.KQHT" Role="KQHT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="IDSinhVien" />
+      </Principal>
+      <Dependent Role="KQHT">
+        <PropertyRef Name="IDSinhVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_LopHoc">
+    <End Type="QLSVModel.LopHoc" Role="LopHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.LopDT" Role="LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopHoc">
+        <PropertyRef Name="IDLopHoc" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDLopHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_PhongHoc">
+    <End Type="QLSVModel.PhongHoc" Role="PhongHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.LopDT" Role="LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhongHoc">
+        <PropertyRef Name="IDPhongHoc" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDPhongHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopHoc_NganhHoc">
+    <End Type="QLSVModel.NganhHoc" Role="NganhHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.LopHoc" Role="LopHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NganhHoc">
+        <PropertyRef Name="IDNganhHoc" />
+      </Principal>
+      <Dependent Role="LopHoc">
+        <PropertyRef Name="IDNganhHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SinhVien_LopHoc">
+    <End Type="QLSVModel.LopHoc" Role="LopHoc" Multiplicity="0..1" />
+    <End Type="QLSVModel.SinhVien" Role="SinhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopHoc">
+        <PropertyRef Name="IDLopHoc" />
+      </Principal>
+      <Dependent Role="SinhVien">
+        <PropertyRef Name="IDLopHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

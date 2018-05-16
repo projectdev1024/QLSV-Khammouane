@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CTDT">
+    <Key>
+      <PropertyRef Name="IDCTDT" />
+    </Key>
+    <Property Name="IDCTDT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDNganhHoc" Type="int" />
+    <Property Name="IDMonHoc" Type="int" />
+    <Property Name="KyHoc" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="GiaoVien">
+    <Key>
+      <PropertyRef Name="IDGiaoVien" />
+    </Key>
+    <Property Name="IDGiaoVien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Avatar" Type="nvarchar" MaxLength="500" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="50" />
+    <Property Name="CMND" Type="nvarchar" MaxLength="50" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="Male" Type="bit" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HocPhi">
+    <Key>
+      <PropertyRef Name="IDHocPhi" />
+    </Key>
+    <Property Name="IDHocPhi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDInfoKyHoc" Type="int" />
+    <Property Name="IDSinhVien" Type="int" />
+    <Property Name="Total" Type="int" />
+    <Property Name="Paid" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="InfoKyHoc">
+    <Key>
+      <PropertyRef Name="IDInfoKyHoc" />
+    </Key>
+    <Property Name="IDInfoKyHoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDNamHoc" Type="int" />
+    <Property Name="IDKyHoc" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhiTC" Type="int" />
+  </EntityType>
+  <EntityType Name="KhoiHoc">
+    <Key>
+      <PropertyRef Name="IDKhoiHoc" />
+    </Key>
+    <Property Name="IDKhoiHoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKhoiHoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="KQHT">
+    <Key>
+      <PropertyRef Name="IDKQHT" />
+    </Key>
+    <Property Name="IDKQHT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDSinhVien" Type="int" />
+    <Property Name="IDLopDT" Type="int" />
+    <Property Name="DTP" Type="float" />
+    <Property Name="DT" Type="float" />
+    <Property Name="DTK" Type="float" />
+    <Property Name="Pass" Type="bit" />
+    <Property Name="IDMonHoc" Type="int" />
+  </EntityType>
+  <EntityType Name="KyHoc">
+    <Key>
+      <PropertyRef Name="IDKyHoc" />
+    </Key>
+    <Property Name="IDKyHoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenHocKy" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="LopDT">
+    <Key>
+      <PropertyRef Name="IDLopDT" />
+    </Key>
+    <Property Name="IDLopDT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDInfoKyHoc" Type="int" />
+    <Property Name="IDCTDT" Type="int" />
+    <Property Name="IDGiaoVien" Type="int" />
+    <Property Name="TimeStart" Type="date" />
+    <Property Name="TimeEnd" Type="date" />
+    <Property Name="Date" Type="int" />
+    <Property Name="Tiet" Type="int" />
+    <Property Name="IDLopHoc" Type="int" />
+    <Property Name="IDPhongHoc" Type="int" />
+  </EntityType>
+  <EntityType Name="LopHoc">
+    <Key>
+      <PropertyRef Name="IDLopHoc" />
+    </Key>
+    <Property Name="IDLopHoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLopHoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="SiSo" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDNganhHoc" Type="int" />
+  </EntityType>
+  <EntityType Name="MonHoc">
+    <Key>
+      <PropertyRef Name="IDMonHoc" />
+    </Key>
+    <Property Name="IDMonHoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenMonHoc" Type="nvarchar" MaxLength="500" />
+    <Property Name="SoTC" Type="int" />
+    <Property Name="SoTiet" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="NamHoc">
+    <Key>
+      <PropertyRef Name="IDNamHoc" />
+    </Key>
+    <Property Name="IDNamHoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNamHoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="NganhHoc">
+    <Key>
+      <PropertyRef Name="IDNganhHoc" />
+    </Key>
+    <Property Name="IDNganhHoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNganh" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDKhoiHoc" Type="int" />
+    <Property Name="NamDT" Type="int" />
+    <Property Name="SoKiHoc" Type="int" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="PhongHoc">
+    <Key>
+      <PropertyRef Name="IDPhongHoc" />
+    </Key>
+    <Property Name="IDPhongHoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaPhongHoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="TenPhongHoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="IDSinhVien" />
+    </Key>
+    <Property Name="IDSinhVien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDLopHoc" Type="int" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Avatar" Type="nvarchar" MaxLength="500" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="50" />
+    <Property Name="CMND" Type="nvarchar" MaxLength="50" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="Male" Type="bit" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Born" Type="nvarchar" MaxLength="50" />
+    <Property Name="YearJoin" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="IDTinTuc" />
+    </Key>
+    <Property Name="IDTinTuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" />
+    <Property Name="TomTat" Type="nvarchar(max)" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="LinkFile" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="CreateBy" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="ThongBao" Type="bit" />
+    <Property Name="CountView" Type="int" />
+  </EntityType>
+  <Association Name="FK_CTDT_MonHoc">
+    <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="0..1" />
+    <End Role="CTDT" Type="Self.CTDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonHoc">
+        <PropertyRef Name="IDMonHoc" />
+      </Principal>
+      <Dependent Role="CTDT">
+        <PropertyRef Name="IDMonHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTDT_NganhHoc">
+    <End Role="NganhHoc" Type="Self.NganhHoc" Multiplicity="0..1" />
+    <End Role="CTDT" Type="Self.CTDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NganhHoc">
+        <PropertyRef Name="IDNganhHoc" />
+      </Principal>
+      <Dependent Role="CTDT">
+        <PropertyRef Name="IDNganhHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HocPhi_InfoKyHoc">
+    <End Role="InfoKyHoc" Type="Self.InfoKyHoc" Multiplicity="0..1" />
+    <End Role="HocPhi" Type="Self.HocPhi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoKyHoc">
+        <PropertyRef Name="IDInfoKyHoc" />
+      </Principal>
+      <Dependent Role="HocPhi">
+        <PropertyRef Name="IDInfoKyHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HocPhi_SinhVien">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+    <End Role="HocPhi" Type="Self.HocPhi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="IDSinhVien" />
+      </Principal>
+      <Dependent Role="HocPhi">
+        <PropertyRef Name="IDSinhVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InfoKyHoc_KyHoc">
+    <End Role="KyHoc" Type="Self.KyHoc" Multiplicity="0..1" />
+    <End Role="InfoKyHoc" Type="Self.InfoKyHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KyHoc">
+        <PropertyRef Name="IDKyHoc" />
+      </Principal>
+      <Dependent Role="InfoKyHoc">
+        <PropertyRef Name="IDKyHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InfoKyHoc_NamHoc">
+    <End Role="NamHoc" Type="Self.NamHoc" Multiplicity="0..1" />
+    <End Role="InfoKyHoc" Type="Self.InfoKyHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NamHoc">
+        <PropertyRef Name="IDNamHoc" />
+      </Principal>
+      <Dependent Role="InfoKyHoc">
+        <PropertyRef Name="IDNamHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQHT_LopDT">
+    <End Role="LopDT" Type="Self.LopDT" Multiplicity="0..1" />
+    <End Role="KQHT" Type="Self.KQHT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopDT">
+        <PropertyRef Name="IDLopDT" />
+      </Principal>
+      <Dependent Role="KQHT">
+        <PropertyRef Name="IDLopDT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQHT_MonHoc">
+    <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="0..1" />
+    <End Role="KQHT" Type="Self.KQHT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonHoc">
+        <PropertyRef Name="IDMonHoc" />
+      </Principal>
+      <Dependent Role="KQHT">
+        <PropertyRef Name="IDMonHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KQHT_SinhVien">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
+    <End Role="KQHT" Type="Self.KQHT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="IDSinhVien" />
+      </Principal>
+      <Dependent Role="KQHT">
+        <PropertyRef Name="IDSinhVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_CTDT">
+    <End Role="CTDT" Type="Self.CTDT" Multiplicity="0..1" />
+    <End Role="LopDT" Type="Self.LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CTDT">
+        <PropertyRef Name="IDCTDT" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDCTDT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_GiaoVien">
+    <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="0..1" />
+    <End Role="LopDT" Type="Self.LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiaoVien">
+        <PropertyRef Name="IDGiaoVien" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDGiaoVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_InfoKyHoc">
+    <End Role="InfoKyHoc" Type="Self.InfoKyHoc" Multiplicity="0..1" />
+    <End Role="LopDT" Type="Self.LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoKyHoc">
+        <PropertyRef Name="IDInfoKyHoc" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDInfoKyHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_LopHoc">
+    <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="0..1" />
+    <End Role="LopDT" Type="Self.LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopHoc">
+        <PropertyRef Name="IDLopHoc" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDLopHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopDT_PhongHoc">
+    <End Role="PhongHoc" Type="Self.PhongHoc" Multiplicity="0..1" />
+    <End Role="LopDT" Type="Self.LopDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhongHoc">
+        <PropertyRef Name="IDPhongHoc" />
+      </Principal>
+      <Dependent Role="LopDT">
+        <PropertyRef Name="IDPhongHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LopHoc_NganhHoc">
+    <End Role="NganhHoc" Type="Self.NganhHoc" Multiplicity="0..1" />
+    <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NganhHoc">
+        <PropertyRef Name="IDNganhHoc" />
+      </Principal>
+      <Dependent Role="LopHoc">
+        <PropertyRef Name="IDNganhHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NganhHoc_KhoiHoc">
+    <End Role="KhoiHoc" Type="Self.KhoiHoc" Multiplicity="0..1" />
+    <End Role="NganhHoc" Type="Self.NganhHoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhoiHoc">
+        <PropertyRef Name="IDKhoiHoc" />
+      </Principal>
+      <Dependent Role="NganhHoc">
+        <PropertyRef Name="IDKhoiHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SinhVien_LopHoc">
+    <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="0..1" />
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopHoc">
+        <PropertyRef Name="IDLopHoc" />
+      </Principal>
+      <Dependent Role="SinhVien">
+        <PropertyRef Name="IDLopHoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TinTuc_GiaoVien">
+    <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="0..1" />
+    <End Role="TinTuc" Type="Self.TinTuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiaoVien">
+        <PropertyRef Name="IDGiaoVien" />
+      </Principal>
+      <Dependent Role="TinTuc">
+        <PropertyRef Name="CreateBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLSVModelStoreContainer">
+    <EntitySet Name="CTDT" EntityType="Self.CTDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GiaoVien" EntityType="Self.GiaoVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HocPhi" EntityType="Self.HocPhi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InfoKyHoc" EntityType="Self.InfoKyHoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhoiHoc" EntityType="Self.KhoiHoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KQHT" EntityType="Self.KQHT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KyHoc" EntityType="Self.KyHoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LopDT" EntityType="Self.LopDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LopHoc" EntityType="Self.LopHoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MonHoc" EntityType="Self.MonHoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NamHoc" EntityType="Self.NamHoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NganhHoc" EntityType="Self.NganhHoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhongHoc" EntityType="Self.PhongHoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CTDT_MonHoc" Association="Self.FK_CTDT_MonHoc">
+      <End Role="MonHoc" EntitySet="MonHoc" />
+      <End Role="CTDT" EntitySet="CTDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDT_NganhHoc" Association="Self.FK_CTDT_NganhHoc">
+      <End Role="NganhHoc" EntitySet="NganhHoc" />
+      <End Role="CTDT" EntitySet="CTDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HocPhi_InfoKyHoc" Association="Self.FK_HocPhi_InfoKyHoc">
+      <End Role="InfoKyHoc" EntitySet="InfoKyHoc" />
+      <End Role="HocPhi" EntitySet="HocPhi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HocPhi_SinhVien" Association="Self.FK_HocPhi_SinhVien">
+      <End Role="SinhVien" EntitySet="SinhVien" />
+      <End Role="HocPhi" EntitySet="HocPhi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InfoKyHoc_KyHoc" Association="Self.FK_InfoKyHoc_KyHoc">
+      <End Role="KyHoc" EntitySet="KyHoc" />
+      <End Role="InfoKyHoc" EntitySet="InfoKyHoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InfoKyHoc_NamHoc" Association="Self.FK_InfoKyHoc_NamHoc">
+      <End Role="NamHoc" EntitySet="NamHoc" />
+      <End Role="InfoKyHoc" EntitySet="InfoKyHoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQHT_LopDT" Association="Self.FK_KQHT_LopDT">
+      <End Role="LopDT" EntitySet="LopDT" />
+      <End Role="KQHT" EntitySet="KQHT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQHT_MonHoc" Association="Self.FK_KQHT_MonHoc">
+      <End Role="MonHoc" EntitySet="MonHoc" />
+      <End Role="KQHT" EntitySet="KQHT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KQHT_SinhVien" Association="Self.FK_KQHT_SinhVien">
+      <End Role="SinhVien" EntitySet="SinhVien" />
+      <End Role="KQHT" EntitySet="KQHT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_CTDT" Association="Self.FK_LopDT_CTDT">
+      <End Role="CTDT" EntitySet="CTDT" />
+      <End Role="LopDT" EntitySet="LopDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_GiaoVien" Association="Self.FK_LopDT_GiaoVien">
+      <End Role="GiaoVien" EntitySet="GiaoVien" />
+      <End Role="LopDT" EntitySet="LopDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_InfoKyHoc" Association="Self.FK_LopDT_InfoKyHoc">
+      <End Role="InfoKyHoc" EntitySet="InfoKyHoc" />
+      <End Role="LopDT" EntitySet="LopDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_LopHoc" Association="Self.FK_LopDT_LopHoc">
+      <End Role="LopHoc" EntitySet="LopHoc" />
+      <End Role="LopDT" EntitySet="LopDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopDT_PhongHoc" Association="Self.FK_LopDT_PhongHoc">
+      <End Role="PhongHoc" EntitySet="PhongHoc" />
+      <End Role="LopDT" EntitySet="LopDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LopHoc_NganhHoc" Association="Self.FK_LopHoc_NganhHoc">
+      <End Role="NganhHoc" EntitySet="NganhHoc" />
+      <End Role="LopHoc" EntitySet="LopHoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NganhHoc_KhoiHoc" Association="Self.FK_NganhHoc_KhoiHoc">
+      <End Role="KhoiHoc" EntitySet="KhoiHoc" />
+      <End Role="NganhHoc" EntitySet="NganhHoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SinhVien_LopHoc" Association="Self.FK_SinhVien_LopHoc">
+      <End Role="LopHoc" EntitySet="LopHoc" />
+      <End Role="SinhVien" EntitySet="SinhVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TinTuc_GiaoVien" Association="Self.FK_TinTuc_GiaoVien">
+      <End Role="GiaoVien" EntitySet="GiaoVien" />
+      <End Role="TinTuc" EntitySet="TinTuc" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
