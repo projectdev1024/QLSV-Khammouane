@@ -18,6 +18,7 @@ namespace WebsiteMVC.Models
         public MonHoc()
         {
             this.CTDTs = new HashSet<CTDT>();
+            this.KQHTs = new HashSet<KQHT>();
         }
     
         public int IDMonHoc { get; set; }
@@ -28,5 +29,7 @@ namespace WebsiteMVC.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDT> CTDTs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KQHT> KQHTs { get; set; }
     }
 }

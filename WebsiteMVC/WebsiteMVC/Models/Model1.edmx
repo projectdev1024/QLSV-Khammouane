@@ -74,6 +74,7 @@
           <Property Name="DT" Type="float" />
           <Property Name="DTK" Type="float" />
           <Property Name="Pass" Type="bit" />
+          <Property Name="IDMonHoc" Type="int" />
         </EntityType>
         <EntityType Name="KyHoc">
           <Key>
@@ -278,6 +279,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_KQHT_MonHoc">
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="0..1" />
+          <End Role="KQHT" Type="Self.KQHT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonHoc">
+              <PropertyRef Name="IDMonHoc" />
+            </Principal>
+            <Dependent Role="KQHT">
+              <PropertyRef Name="IDMonHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_KQHT_SinhVien">
           <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
           <End Role="KQHT" Type="Self.KQHT" Multiplicity="*" />
@@ -443,6 +456,10 @@
             <End Role="LopDT" EntitySet="LopDT" />
             <End Role="KQHT" EntitySet="KQHT" />
           </AssociationSet>
+          <AssociationSet Name="FK_KQHT_MonHoc" Association="Self.FK_KQHT_MonHoc">
+            <End Role="MonHoc" EntitySet="MonHoc" />
+            <End Role="KQHT" EntitySet="KQHT" />
+          </AssociationSet>
           <AssociationSet Name="FK_KQHT_SinhVien" Association="Self.FK_KQHT_SinhVien">
             <End Role="SinhVien" EntitySet="SinhVien" />
             <End Role="KQHT" EntitySet="KQHT" />
@@ -553,6 +570,10 @@
             <End Role="LopDT" EntitySet="LopDTs" />
             <End Role="KQHT" EntitySet="KQHTs" />
           </AssociationSet>
+          <AssociationSet Name="FK_KQHT_MonHoc" Association="QLSVModel.FK_KQHT_MonHoc">
+            <End Role="MonHoc" EntitySet="MonHocs" />
+            <End Role="KQHT" EntitySet="KQHTs" />
+          </AssociationSet>
           <AssociationSet Name="FK_KQHT_SinhVien" Association="QLSVModel.FK_KQHT_SinhVien">
             <End Role="SinhVien" EntitySet="SinhViens" />
             <End Role="KQHT" EntitySet="KQHTs" />
@@ -655,7 +676,9 @@
           <Property Name="DT" Type="Double" />
           <Property Name="DTK" Type="Double" />
           <Property Name="Pass" Type="Boolean" />
+          <Property Name="IDMonHoc" Type="Int32" />
           <NavigationProperty Name="LopDT" Relationship="QLSVModel.FK_KQHT_LopDT" FromRole="KQHT" ToRole="LopDT" />
+          <NavigationProperty Name="MonHoc" Relationship="QLSVModel.FK_KQHT_MonHoc" FromRole="KQHT" ToRole="MonHoc" />
           <NavigationProperty Name="SinhVien" Relationship="QLSVModel.FK_KQHT_SinhVien" FromRole="KQHT" ToRole="SinhVien" />
         </EntityType>
         <EntityType Name="KyHoc">
@@ -712,6 +735,7 @@
           <Property Name="SoTiet" Type="Int32" />
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="CTDTs" Relationship="QLSVModel.FK_CTDT_MonHoc" FromRole="MonHoc" ToRole="CTDT" />
+          <NavigationProperty Name="KQHTs" Relationship="QLSVModel.FK_KQHT_MonHoc" FromRole="MonHoc" ToRole="KQHT" />
         </EntityType>
         <EntityType Name="NamHoc">
           <Key>
@@ -941,6 +965,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_KQHT_MonHoc">
+          <End Type="QLSVModel.MonHoc" Role="MonHoc" Multiplicity="0..1" />
+          <End Type="QLSVModel.KQHT" Role="KQHT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MonHoc">
+              <PropertyRef Name="IDMonHoc" />
+            </Principal>
+            <Dependent Role="KQHT">
+              <PropertyRef Name="IDMonHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_KQHT_SinhVien">
           <End Type="QLSVModel.SinhVien" Role="SinhVien" Multiplicity="0..1" />
           <End Type="QLSVModel.KQHT" Role="KQHT" Multiplicity="*" />
@@ -1073,6 +1109,7 @@
           <EntitySetMapping Name="KQHTs">
             <EntityTypeMapping TypeName="QLSVModel.KQHT">
               <MappingFragment StoreEntitySet="KQHT">
+                <ScalarProperty Name="IDMonHoc" ColumnName="IDMonHoc" />
                 <ScalarProperty Name="Pass" ColumnName="Pass" />
                 <ScalarProperty Name="DTK" ColumnName="DTK" />
                 <ScalarProperty Name="DT" ColumnName="DT" />
