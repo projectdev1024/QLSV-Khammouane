@@ -1,0 +1,128 @@
+﻿
+<!DOCTYPE html>
+<html class="aui ltr" dir="ltr" lang="vi-VN">
+<head>
+    <title>Trường Cao đẳng Khammouane Lào</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="/favicon.png" rel="icon" />
+    <link href="~/Content/aui.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body class=" yui3-skin-sam controls-visible signed-out public-page site">
+    <a href="#" id="skip-to-content">Truy cập nội dung luôn</a> <div class="container-fluid" id="wrapper">
+        <header id="banner" role="banner">
+            <div class="border-top"></div> <div id="banner-wrapper">
+                <div id="banner-left">
+                    <a id="logo" href="/" title="Trở về Trang chủ">
+                        <img src="~/images/banner1.jpg" style="max-height: 80px" />
+                    </a>
+                </div> <div id="banner-right">
+                    <div class="line1">
+                        <span style="float:right; display: none">
+                            <a data-redirect="false" href="#" id="sign-in" rel="nofollow">(+)</a> <span class="textRight">|</span>
+                            <a href="#">Liên hệ</a> <span class="textRight">|</span> <span class="textRight">Ngôn ngữ:</span> <span class="changeLang">
+                                <a href="#">
+                                    <img src="/images/vi.gif">
+                                </a> <a href="#" target="_blank"><img src="/images/en.gif"></a>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="menuMobile"><button id="menu-toggle" type="button"> MENU <i class="icon-align-justify"></i></button></div> <div class="line2">
+                        <a href="#">
+                            
+                        </a>
+                        <a class="loginMobile" data-redirect="false" href="#" id="sign-in" rel="nofollow">(+)</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="menu">
+            <div id="home-button">
+                <a href="#">
+                    <img src="/images/home-button.png" style="height:41px; width:54px; z-index:999;" />
+                </a>
+            </div> <div id="home-text">
+                <nav class="sort-pages modify-pages" id="navigation" role="navigation">
+                    <ul>
+                        <li>
+                            <a href="@Url.Action("Index","Home")">
+                                <span> TRANG CHỦ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","TinTuc")">
+                                <span> TIN TỨC</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","DKMH")">
+                                <span> ĐĂNG KÍ MÔN HỌC</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","XemDiem")">
+                                <span> XEM ĐIỂM</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","CTDT")">
+                                <span> CTDT</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","HocPhi")">
+                                <span> HỌC PHÍ</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("LienHe","Home")">
+                                <span> LIÊN HỆ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="content">
+            @RenderBody()
+        </div>
+        <footer id="footer" role="contentinfo" style="margin: 0px">
+            <div id="wrapper-footer">
+                <div id="wapper-title-left">
+                    <div id="wapper-title-left-left">
+                        <div class="bando">
+                            <h4>BẢN ĐỒ CHỈ DẪN</h4> <p>Trường Cao đẳng Khammouane Lào</p>
+                            <a href="#">
+                                <img src="~/images/map.png" />
+                            </a>
+                        </div>
+                    </div> <div id="wapper-title-left-right">
+                        <div class="mangxahoi">
+                            <h4>MẠNG XÃ HỘI</h4>
+                            <ul>
+                                <li class="icon1"> <a href="#"><img src="/images/fb-icon.png" width="30" /></a></li>
+                                <li class="icon1"><a href="#"><img src="/images/ytb-icon.png" width="30" /></a></li>
+                                <li class="icon1"><a href="#"><img src="/images/twitter-icon.png" width="30" /></a></li>
+                                <ul>
+                        </div> <div class="phanhoi"> <a href="#"><input class="submit-phanhoi" type="submit" value="Gửi phản hồi" /></a> </div>
+                    </div>
+                </div> <div id="wapper-title-right">
+                    <div id="wapper-title-top">
+                        <div id="wapper-title-bottom">
+                            <hr /> <div id="wapper-title-bottom-content">
+                                <b>Bản quyền thuộc về Trường Cao đẳng Khammouane Lào </b>
+                                <p class="address">Địa chỉ: Khammouane College, Samenthai Road, Vientiane, Lào.</p> <p class="phone">Điện thoại: 0982 565 5656- 0166 464 4646</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer> <div id='bttop'> <img src="/images/icon_gototop.png" /> </div>
+    </div>
+</body>
+</html> 

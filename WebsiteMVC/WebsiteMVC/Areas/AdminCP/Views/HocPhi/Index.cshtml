@@ -1,0 +1,119 @@
+﻿@model IEnumerable<WebsiteMVC.Models.HocPhi>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+}
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit"></i>@ViewBag.Title
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit")" id="sample_editable_1_new" class="btn green">
+                            Thêm <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table table-bordered" id="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Total)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Paid)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KyHoc.TenHocKy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NamHoc.TenNamHoc)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SinhVien.FullName)
+                    </th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Paid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KyHoc.TenHocKy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NamHoc.TenNamHoc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SinhVien.FullName)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit",new { id = item.IDHocPhi})" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                        <span onclick="delete_object(this,'@item.IDHocPhi')" class="btn btn-warning"><i class="fa fa-trash-o"></i></span>
+                    </td>
+                </tr>
+}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+@section css{
+    <link href="/Content/theme/assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section js{
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+    <script>
+        $("#table").DataTable();
+
+        function delete_object(target, id) {
+            if (confirm("Bạn có muốn xóa không?")) {
+                $.ajax({
+                    url: "@Url.Action("Delete")",
+                    type: "POST",
+                    data: { id: id },
+                    success: function (d) {
+                        if (d) {
+                            $(target).closest("tr").remove();
+                        } else {
+                            alert("Xóa thất bại");
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+}
+
+
+ 

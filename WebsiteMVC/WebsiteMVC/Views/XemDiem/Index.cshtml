@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebsiteMVC.Models.KQHT>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var gr = Model.GroupBy(q => q.LopDT.IDInfoKyHoc);
+}
+
+<div style="margin: 0 11.13%">
+    <hr />
+    <h2>XEM ĐIỂM</h2>
+    <table class="table table-bordered">
+        <tr>
+            <td>Tên môn học</td>
+            <td>Điểm thành phần</td>
+            <td>Điểm thi</td>
+            <td>Điểm tổng kết</td>
+            <td>Qua môn</td>
+        </tr>
+        @foreach (var ky in gr)
+        {
+            <tr>
+                <td colspan="6"><b>@ky.First().LopDT.InfoKyHoc.mNamHoc</b></td>
+            </tr>
+            foreach (var item in ky)
+            {
+                <tr>
+                    <td>@item.LopDT.CTDT.MonHoc.TenMonHoc</td>
+                    <td>@item.DTP</td>
+                    <td>@item.DT</td>
+                    <td>@item.DTK</td>
+                    <td>@(item.Pass == true ? "Qua môn" : "Không qua môn")</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="6"><b>Qua môn: @ky.Count(q => q.Pass == true).ToString("d") môn</b></td>
+            </tr>
+            <tr>
+                <td colspan="6"><b>Không qua môn: @ky.Count(q => q.Pass != true).ToString("d") môn</b></td>
+            </tr>
+            <tr>
+                <td colspan="6"><b>Tổng kết: @ky.Average(q => q.DTK ?? 0).ToString("N2")</b></td>
+            </tr>
+        }
+    </table>
+
+</div>

@@ -1,0 +1,28 @@
+﻿@model List<WebsiteMVC.Models.KQHT>
+
+@using (Html.BeginForm())
+{
+    <table class="table table-bordered">
+        <tr>
+            <td>Mã sinh viên</td>
+            <td>Họ tên</td>
+            <td>Điểm thành phần</td>
+            <td>Điểm thi</td>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(q => Model[i].IDKQHT)
+                    @Html.HiddenFor(q => Model[i].IDLopDT)
+                    @Html.HiddenFor(q => Model[i].IDSinhVien)
+                    @Model[i].SinhVien.IDSinhVien
+                </td>
+                <td>@Model[i].SinhVien.FullName</td>
+                <td>@Html.TextBoxFor(q => Model[0].DTP)</td>
+                <td>@Html.TextBoxFor(q => Model[0].DT)</td>
+            </tr>
+        }
+    </table>
+    <button class="green">Lưu</button>
+}

@@ -1,0 +1,56 @@
+﻿@model WebsiteMVC.Models.MonHoc
+
+@{
+    ViewBag.Title = "Môn học";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@ViewBag.Title</div>
+    <div class="panel-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.IDMonHoc)
+                @Html.HiddenFor(model => model.Active)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TenMonHoc, "Tên môn học", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenMonHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenMonHoc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SoTC, "Số tín chỉ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SoTC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SoTC, "", new { @class = "text-danger", type = "number" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SoTiet, "Số tiết học", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SoTiet, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SoTiet, "", new { @class = "text-danger", type = "number" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn green" />
+                        <a href="@Url.Action("Index")" class="btn btn-default"><i class="fa fa-lg fa-arrow-circle-o-left"></i> QUAY LẠI DANH SÁCH</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+﻿@model WebsiteMVC.Models.KhoiHoc
+
+@{
+    ViewBag.Title = "Khối học";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-edit"></i> @ViewBag.Title</div>
+    <div class="panel-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.IDKhoiHoc)
+                @Html.HiddenFor(model => model.Active)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Code, "Mã khối", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TenKhoiHoc, "Tên khối học", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenKhoiHoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenKhoiHoc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn green" />
+                        <a href="@Url.Action("Index")" class="btn btn-default"><i class="fa fa-lg fa-arrow-circle-o-left"></i> QUAY LẠI DANH SÁCH</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+

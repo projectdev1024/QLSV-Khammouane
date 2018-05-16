@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebsiteMVC.Models.LopDT>
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+}
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit"></i>@ViewBag.Title
+        </div>
+    </div>
+    <div class="portlet-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Lớp học</th>
+                <th>Môn học</th>
+                <th>Phòng học</th>
+                <th>Tổng sinh viên</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.LopHoc.TenLopHoc</td>
+                    <td>@item.CTDT.MonHoc.TenMonHoc</td>
+                    <td>@item.PhongHoc.TenPhongHoc</td>
+                    <td>@item.KQHTs.Count Sinh viên</td>
+                    <td><span onclick="nhapdiem('@item.IDLopDT')" class="btn green">Nhập điểm</span></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-body">
+        <div id="result">Click Nhập điểm để nhập điểm cho lớp học</div>
+    </div>
+</div>
+
+<script>
+    function nhapdiem(IDLopDT) {
+        $.ajax({
+            url: '@Url.Action("NhapDiem")',
+            type: 'GET',
+            data: { IDLopDT: IDLopDT },
+            success: function (d) {
+                $('#result').html(d);
+            }
+        })
+    }
+</script>

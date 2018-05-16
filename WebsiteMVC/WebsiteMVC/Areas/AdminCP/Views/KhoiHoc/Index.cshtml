@@ -1,0 +1,127 @@
+﻿@model IEnumerable<WebsiteMVC.Models.KhoiHoc>
+
+@{
+    ViewBag.Title = "Danh sách khối học";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+}
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit"></i>@ViewBag.Title
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit","KhoiHoc")" id="sample_editable_1_new" class="btn green">
+                            Thêm khối học mới <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-hover" id="table">
+            <thead>
+                <tr>
+                    <th>Khối học</th>
+                    <th>Ngành học</th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle" rowspan="@(item.NganhHocs.Count(q=>q.Active != false)+1)">
+                            @Html.DisplayFor(modelItem => item.TenKhoiHoc)
+                            #@Html.DisplayFor(modelItem => item.Code)
+                            | <a href="@Url.Action("Edit","KhoiHoc",new { id = item.IDKhoiHoc})" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                            <span onclick="delete_object(this,'@item.IDKhoiHoc')" class="btn btn-warning"><i class="fa fa-trash-o"></i></span>
+                        </td>
+                        <td colspan="2" class="align-middle">
+                            <a href="@Url.Action("Edit","NganhHoc",new { item.IDKhoiHoc })" id="sample_editable_1_new" class="btn green">
+                                Thêm ngành học <i class="fa fa-plus"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    foreach (var nh in item.NganhHocs.Where(q => q.Active != false))
+                    {
+                        <tr>
+                            <td>@nh.TenNganh</td>
+                            <td>
+                                <span onclick="view_ctdt('@nh.IDNganhHoc')" class="btn btn-info"><i class="fa fa-info"></i> Xem CTDT</span>
+                                <a href="@Url.Action("Edit","NganhHoc",new { id = nh.IDNganhHoc})" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                <span onclick="delete_NganhHoc(this,'@nh.IDNganhHoc')" class="btn btn-warning"><i class="fa fa-trash-o"></i></span>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="CTDT">
+    <p>*** Click Xem CTDT để xem chi tiết</p>
+</div>
+
+
+@section css{
+    <link href="/Content/theme/assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section js{
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+    <script>
+        //$("#table").DataTable();
+
+        function delete_object(target, id) {
+            if (confirm("Bạn có muốn xóa khối học không?")) {
+                $.ajax({
+                    url: "@Url.Action("Delete","KhoiHoc")",
+                    type: "POST",
+                    data: { id: id },
+                    success: function (d) {
+                        if (d) {
+                            $(target).closest("tr").remove();
+                        } else {
+                            alert("Xóa thất bại");
+                        }
+                    }
+                })
+            }
+        }
+
+        function delete_NganhHoc(target, id) {
+            if (confirm("Bạn có muốn xóa ngành học không?")) {
+                $.ajax({
+                    url: "@Url.Action("Delete","NganhHoc")",
+                    type: "POST",
+                    data: { id: id },
+                    success: function (d) {
+                        window.location.reload();
+                    }
+                })
+            }
+        }
+
+        function view_ctdt(IDNganhHoc) {
+            $.ajax({
+                    url: "@Url.Action("Index","CTDT")",
+                    type: "POST",
+                    data: { IDNganhHoc: IDNganhHoc },
+                    success: function (d) {
+                        $("#CTDT").html(d);
+                    }
+                })
+        }
+    </script>
+}
+

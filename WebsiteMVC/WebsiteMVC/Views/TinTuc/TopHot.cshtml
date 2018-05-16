@@ -1,0 +1,8 @@
+﻿@model IEnumerable<WebsiteMVC.Models.TinTuc>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="@Url.Action("ChiTiet","TinTuc",new { item.IDTinTuc })"> @item.TomTat<i class=""></i> </a>
+    </li>
+}

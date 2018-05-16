@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebsiteMVC.Models.LopDT>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var hocPhi = ViewBag.HocPhi as WebsiteMVC.Models.HocPhi;
+    var Account = ViewBag.Account as WebsiteMVC.Models.SinhVien;
+}
+
+<div style="margin: 0 11.13%">
+    <hr />
+    <h3>@ViewBag.Title</h3>
+    <table class="table table-bordered">
+        <tr>
+            <td>Môn học</td>
+            <td>Số TC</td>
+            <td>Phí TC</td>
+            <td>Tiền học phí</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CTDT.MonHoc.TenMonHoc </td>
+                <td>@item.CTDT.MonHoc.SoTC </td>
+                <td>@(item.InfoKyHoc.PhiTC?.ToString("#,###")) </td>
+                <td>@((item.CTDT.MonHoc.SoTC * item.InfoKyHoc.PhiTC)?.ToString("#,###")) </td>
+            </tr>
+        }
+    </table>
+
+    <div class="row">
+        <div class="col-md-5">
+            <table class="table table-bordered">
+                <tr>
+                    <td>Sinh viên: </td>
+                    <td><b>@Account.FullName</b></td>
+                </tr>
+                <tr>
+                    <td>Số tiền phải đóng: </td>
+                    <td><b>@(hocPhi.Total?.ToString("#,###"))</b> VND</td>
+                </tr>
+                <tr>
+                    <td>Đã đóng: </td>
+                    <td><b>@((hocPhi.Paid ?? 0).ToString("#,###"))</b> VND</td>
+                </tr>
+                <tr>
+                    <td>Còn nợ: </td>
+                    <td><b>@((hocPhi.Total - hocPhi.Paid)?.ToString("#,###"))</b> VND</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

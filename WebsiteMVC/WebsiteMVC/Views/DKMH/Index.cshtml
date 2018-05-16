@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebsiteMVC.Models.KQHT>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="margin:0 11.13%">
+    <hr />
+    <h2>@ViewBag.Title</h2>
+    @using (Html.BeginForm())
+    {
+        int index = 0;
+        <table class="table table-bordered">
+            <tr>
+                <td>Môn học</td>
+                <td>Lớp</td>
+                <td>Giáo viên</td>
+                <td>Lớp học</td>
+                <td>Bắt đầu</td>
+                <td>Kết thúc</td>
+                <td>Tiết</td>
+                <td>Thứ</td>
+            </tr>
+            @foreach (var gr in Model.GroupBy(q => q.LopDT.IDCTDT))
+            {
+                <tr>
+                    <td rowspan="@(gr.Count() + 1 )">@gr.First().LopDT.CTDT.MonHoc.TenMonHoc</td>
+                    <td colspan="8"></td>
+                </tr>
+                foreach (var item in gr)
+                {
+                    <tr>
+                        <td>
+                            @Html.Hidden($"[{index}].IDKQHT", item.IDKQHT)
+                            @Html.Hidden($"[{index}].IDSinhVien", item.IDSinhVien)
+                            @Html.Hidden($"[{index}].Pass", item.Pass)
+                            <label>@Html.RadioButton($"[{index}].IDLopDT", item.IDLopDT) @item.LopDT.LopHoc.TenLopHoc</label>
+                            @if (item.IDKQHT > 0)
+                            {
+                                <script>
+                                $('[name="[@(index)].IDLopDT"][value = @item.IDLopDT]')[0].checked = true;
+                                </script>
+                            }
+                        </td>
+                        <td>@item.LopDT.GiaoVien.FullName</td>
+                        <td>@item.LopDT.PhongHoc.TenPhongHoc</td>
+                        <td>@(item.LopDT.TimeStart?.ToString("d"))</td>
+                        <td>@(item.LopDT.TimeEnd?.ToString("d"))</td>
+                        <td>@item.LopDT.Tiet</td>
+                        <td>@item.LopDT.Date</td>
+                    </tr>
+                }
+                index++;
+            }
+        </table>
+        if (Model.Count() > 0)
+        {
+            <button class="btn btn-primary">Đăng kí</button>
+        }
+    }
+</div>

@@ -1,0 +1,128 @@
+﻿@model IEnumerable<WebsiteMVC.Models.InfoKyHoc>
+
+@{
+    ViewBag.Title = "Danh sách kỳ học";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+}
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit"></i>@ViewBag.Title
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit","InfoKyHoc")" id="sample_editable_1_new" class="btn green">
+                            Thêm kì mới <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered" id="table">
+            <thead>
+                <tr>
+                    <th>
+                        NĂM HỌC
+                    </th>
+                    <th>
+                        HỌC PHÍ/1TC
+                    </th>
+                    <th>
+                        TRẠNG THÁI
+                    </th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.mNamHoc
+                        </td>
+                        <td>
+                            @item.PhiTC.Value.ToString("#,###") VND/TC
+                        </td>
+                        <td>
+                            @item.sStatus
+                        </td>
+                        <td>
+                            @switch (item.Status)
+                            {
+                                case "INIT":
+                                    <span onclick="status(@item.IDInfoKyHoc, 'OPEN')" class="btn btn-primary">Mở đăng kí môn học</span>
+                                    <a href="@Url.Action("Index","LopDT",new { item.IDInfoKyHoc})" class="btn btn-primary"><i class="fa fa-pencil"></i> Mở lớp DT</a>
+                                    <a href="@Url.Action("Edit",new { id = item.IDInfoKyHoc})" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                    <span onclick="delete_object(this,'@item.IDInfoKyHoc')" class="btn btn-warning"><i class="fa fa-trash-o"></i></span>
+                                    break;
+                                case "OPEN":
+                                    <span onclick="status(@item.IDInfoKyHoc, 'RUNNING')" class="btn btn-primary">Đóng đăng kí môn học</span>
+                                    break;
+                                case "RUNNING":
+                                    <span onclick="status(@item.IDInfoKyHoc, 'CLOSED')" class="btn btn-primary">Kết thúc kì học</span>
+                                    break;
+                                case "CLOSED":
+                                    break;
+                                default:
+                                    break;
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+@section css{
+    <link href="/Content/theme/assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section js{
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+    <script>
+        $("#table").DataTable();
+
+        function delete_object(target, id) {
+            if (confirm("Bạn có muốn xóa không?")) {
+                $.ajax({
+                    url: "@Url.Action("Delete")",
+                    type: "POST",
+                    data: { id: id },
+                    success: function (d) {
+                        if (d) {
+                            $(target).closest("tr").remove();
+                        } else {
+                            alert("Xóa thất bại");
+                        }
+                    }
+                })
+            }
+        }
+
+        function status(id,status) {
+            if (confirm("Bạn có muốn chuyển trạng thái không?")) {
+                $.ajax({
+                    url: "@Url.Action("Status")",
+                    type: "POST",
+                    data: { id: id, status: status },
+                    success: function (d) {
+                        window.location.reload();
+                    }
+                })
+            }
+        }
+    </script>
+}
+

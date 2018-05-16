@@ -1,0 +1,63 @@
+﻿@model List<WebsiteMVC.Models.KhoaHoc>
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.Hidden("IDKhoaHoc", (int)ViewBag.IDNamHoc)
+            @Html.Hidden("IDKhoaHoc", (int)ViewBag.IDKyHoc)
+            @Html.Hidden("IDKhoaHoc", (int)ViewBag.IDNganhHoc)
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Môn học</td>
+                        <td>Giáo viên dạy</td>
+                        <td>Lớp học</td>
+                        <td>Học viên tối đa</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>
+                                <label>@Html.TextBoxFor(q => Model[i].IDCTDT, new { type = "checkbox" }) @Model[i].CTDT.MonHoc.TenMonHoc</label>
+                            </td>
+                            <td>
+                                @Html.HiddenFor(q => Model[i].IDNamHoc)
+                                @Html.HiddenFor(q => Model[i].IDLopHoc)
+                                @Html.HiddenFor(q => Model[i].IDKyHoc)
+                                @Html.HiddenFor(q => Model[i].IDKhoaHoc)
+
+                                @Html.DropDownListFor(q => Model[i].IDGiaoVien, ViewBag.IDGiaoViens as SelectList, "----Vui lòng chọn----", htmlAttributes: new { required = "true", @class = "form-control", id = $"IDGiaoVien_{i}" })
+                            </td>
+                            <td>@Model[i].LopHoc.TenLopHoc</td>
+                            <td>
+                                @Html.TextBoxFor(model => Model[i].MaxStudent, new { required = "true", @class = "form-control", type = "number" })
+                                <script>
+                                    $("#IDGiaoVien_@i").val('@Model[i].IDGiaoVien');
+                                </script>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn green" />
+                    <a href="@Url.Action("Index",new {  ViewBag.IDNamHoc, ViewBag.IDKyHoc, ViewBag.IDNganhHo})" class="btn btn-default"><i class="fa fa-lg fa-arrow-circle-o-left"></i> QUAY LẠI DANH SÁCH</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

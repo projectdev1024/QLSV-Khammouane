@@ -1,0 +1,138 @@
+﻿@model WebsiteMVC.Models.TinTuc
+
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="Layout12vs363" id="main-content" role="main">
+    <div class="portlet-layout row-fluid Hust_Tintuc-row1">
+        <div class="portlet-column portlet-column-only span12 l363-row1-cot1" id="column-1">
+            <div class="portlet-dropzone portlet-column-content portlet-column-content-only" id="layout-column_column-1">
+                <div class="portlet-boundary portlet-boundary_1_WAR_htmlportlet_ portlet-static portlet-static-end portlet-borderless html-portlet " id="p_p_id_1_WAR_htmlportlet_INSTANCE_2qFhStvFcUvV_">
+                    <span id="p_1_WAR_htmlportlet_INSTANCE_2qFhStvFcUvV"></span> <div class="portlet-borderless-container" style="">
+                        <div class="portlet-body">
+                            <style type="text/css">
+                                .image-gioithieu {
+                                    background: transparent url("/documents/21257/0/Gioithieu.png/0e3a9dc6-a75f-4038-a83d-06d32ffa0cde?t=1462790417000");
+                                    height: 65px;
+                                    margin-bottom: 10px;
+                                    margin-top: 5px
+                                }
+
+                                    .image-gioithieu p {
+                                        color: #FFF;
+                                        margin-left: 30px
+                                    }
+                            </style> <div class="image-gioithieu"> <p style="font-size: 24px; line-height: 3;"><a href="/web/vi/home" style="color:#FFF">Trang chủ</a> &gt; <a href="/web/vi/tin-tuc-thong-bao" style="color:#FFF">Tin tức &amp; Thông báo</a></p> </div>
+                        </div>
+                    </div>
+                </div> <div class="portlet-boundary portlet-boundary_1_WAR_htmlportlet_ portlet-static portlet-static-end portlet-borderless html-portlet " id="p_p_id_1_WAR_htmlportlet_INSTANCE_NyvSIRe8od7N_"> <span id="p_1_WAR_htmlportlet_INSTANCE_NyvSIRe8od7N"></span> <div class="portlet-borderless-container" style=""> <div class="portlet-body"> <p style="font-size: 24px; line-height: 2;margin-left:30px"><a href="/web/vi/doi-moi-giao-duc" style="color:#333">T</a>in tức &amp; Thông báo</p> </div> </div> </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet-layout row-fluid Hust_Tintuc-row2">
+        <div class="portlet-column span9 Hust_Tintuc-row2-cot2" id="column-5">
+            <div class="portlet-dropzone portlet-column-content" id="layout-column_column-3">
+                <div class="portlet-boundary portlet-boundary_1_WAR_portalnewspublisherportlet_ portlet-static portlet-static-end portlet-borderless portal-newspublisher-portlet " id="p_p_id_1_WAR_portalnewspublisherportlet_INSTANCE_pIrCQOjLR74r_">
+                    <span id="p_1_WAR_portalnewspublisherportlet_INSTANCE_pIrCQOjLR74r"></span> <div class="portlet-borderless-container" style="">
+                        <div class="portlet-body">
+                            <h3>@Model.TieuDe</h3>
+                            @Html.Raw(Model.NoiDung)
+                            @if (string.IsNullOrWhiteSpace(Model.LinkFile) == false)
+                            {
+                                <p>
+                                    >> File đính kèm <a href="@Model.LinkFile" download="">Tải xuống</a>
+                                </p>
+                            }
+
+                            <p style="text-align: right"> @(Model.CreateTime?.ToString("dd/MM/yyyy")), Bởi @(Model.GiaoVien?.FullName)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portlet-column portlet-column-last span3 Hust_Tintuc-row2-cot3" id="column-4">
+            <div class="portlet-dropzone portlet-column-content portlet-column-content-last" id="layout-column_column-4">
+                <div class="portlet-boundary portlet-boundary_hustevent_WAR_DemoSpringMVCportlet_ portlet-static portlet-static-end portlet-borderless first-demo-spring-mvc-portlet " id="p_p_id_hustevent_WAR_DemoSpringMVCportlet_INSTANCE_duaXyD7S44EF_">
+                    <span id="p_hustevent_WAR_DemoSpringMVCportlet_INSTANCE_duaXyD7S44EF"></span> <div class="portlet-borderless-container" style="">
+                        <div class="portlet-body">
+                            <style>
+                                .event-title-highlight {
+                                    font-size: 22px;
+                                    padding: 15px 25px;
+                                    color: #9c1010;
+                                    border-top: solid;
+                                    border-bottom: 1px solid;
+                                    border-bottom-color: #e2e2e2;
+                                }
+
+                                .wrap-highlight {
+                                    padding: 25px 24px;
+                                    margin-top: -15px;
+                                }
+
+                                .event-month-highlight {
+                                    text-align: center;
+                                    color: #545454;
+                                    font-size: 20px;
+                                }
+
+                                .event-day-highlight {
+                                    text-align: center;
+                                    color: #7e0600;
+                                    font-size: 30px;
+                                    margin-top: 10px;
+                                    margin-bottom: 10px;
+                                }
+
+                                .event-content-highlight {
+                                    margin-left: 15px;
+                                    color: #545454;
+                                    margin-top: -10px;
+                                    font-size: 15px;
+                                }
+
+                                .event-background-highlight {
+                                    background: transparent url("/DemoSpringMVC-portlet/images/highlight-edge.png") no-repeat scroll 100% 100%;
+                                }
+                            </style> <div style="background: #f8f8f4"> <div class="event-background-highlight"> <div class="event-title-highlight" style="font-family: Arial;">SỰ KIỆN NỔI BẬT</div> <div class="wrap-highlight"> <table> <tr> <td> <div class="event-month-highlight"> T04 </div> <div class="event-day-highlight"> 18 </div> </td> <td><div class="event-content-highlight">Ngày hội tư vấn: Học thạc sĩ - Cơ hội học bổng và nghề nghiệp</div></td> </tr> <!-- <tr> <td><label style="text-align: right; color: #a0a0a0; margin-bottom: -1px;">></label></td> <td><a style="margin-left: 15px;color: #9c1010;font-size: 15px;" >Xem chi tiết</a></td> </tr> --> </table> </div> </div> </div>
+                        </div>
+                    </div>
+                </div> <div class="portlet-boundary portlet-boundary_1_WAR_portalnewspublisherportlet_ portlet-static portlet-static-end portal-newspublisher-portlet " id="p_p_id_1_WAR_portalnewspublisherportlet_INSTANCE_LktksU7V1kSn_">
+                    <span id="p_1_WAR_portalnewspublisherportlet_INSTANCE_LktksU7V1kSn"></span> <section class="portlet" id="portlet_1_WAR_portalnewspublisherportlet_INSTANCE_LktksU7V1kSn">
+                        <header class="portlet-topper">
+                            <div class="portlet-fulltitle">
+                                <h1 class="portlet-title"> <span class="" onmouseover="Liferay.Portal.ToolTip.show(this, 'tin\x20nổi\x20bật')"> <img id="rjus_column4_1" src="/portal-newspublisher-portlet/icon.png" alt="" /> <span class="taglib-text hide-accessible">tin nổi bật</span> </span> <span class="portlet-title-text">tin nổi bật</span> </h1>
+                            </div>
+                            <menu class="portlet-topper-toolbar" id="portlet-topper-toolbar_1_WAR_portalnewspublisherportlet_INSTANCE_LktksU7V1kSn" type="toolbar"> </menu>
+                        </header>
+                        <div class="portlet-content">
+                            <div class=" portlet-content-container" style="">
+                                <div class="portlet-body">
+                                    <div class="news-wrapper ">
+                                        <style>
+                                            .news-list-title-wrapper .xemToanBo {
+                                                color: #337ab7;
+                                            }
+
+                                            .news-list-title-wrapper .news-list-title li {
+                                                line-height: 2;
+                                                text-align: justify;
+                                            }
+                                        </style> <div class="news-list-title-wrapper">
+                                            <ul class="news-list-title">
+                                                @Html.Action("TopHot", "TinTuc")
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

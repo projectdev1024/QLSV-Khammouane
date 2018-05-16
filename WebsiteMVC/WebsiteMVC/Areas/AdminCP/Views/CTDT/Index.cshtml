@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebsiteMVC.Models.CTDT>
+
+@{
+    var nganh = ViewBag.NganhHoc as WebsiteMVC.Models.NganhHoc;
+}
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit"></i>CHƯƠNG TRÌNH ĐÀO TẠO NGÀNH: @(nganh?.TenNganh)
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit", new { IDNganhHoc = nganh.IDNganhHoc })" id="sample_editable_1_new" class="btn green">
+                            Thêm <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table table-bordered" id="table">
+            <thead>
+                <tr>
+                    <th>
+                        Kỳ học
+                    </th>
+                    <th>
+                        Tên môn học
+                    </th>
+                    <th>
+                        Số tín chỉ
+                    </th>
+                    <th>
+                        Số tiết
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KyHoc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MonHoc.TenMonHoc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MonHoc.SoTC)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MonHoc.SoTiet)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+@section css{
+    <link href="/Content/theme/assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section js{
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+    <script>
+        $("#table").DataTable();
+    </script>
+}
+

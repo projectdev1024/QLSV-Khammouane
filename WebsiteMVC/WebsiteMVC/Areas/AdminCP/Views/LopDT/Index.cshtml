@@ -1,0 +1,101 @@
+﻿@model  List<WebsiteMVC.Models.LopDT>
+
+@{
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+    var info = ViewBag.IDInfoKyHocs as SelectList;
+    var nganh = ViewBag.IDNganhHocs as SelectList;
+    int i = 0;
+}
+
+<label class="green center input-group input-group-addon">TÙY CHỌN LỌC</label>
+<br />
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon3">NGÀNH HỌC</span>
+                @Html.DropDownList("IDNganhHoc", nganh, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon3">KỲ HỌC</span>
+                @Html.DropDownList("IDInfoKyHoc", info, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <br />
+    <input type="submit" value="LỌC" class="btn green form-control" />
+}
+<hr />
+@using (Html.BeginForm("Edit", "LopDT"))
+{
+
+    <table class="table table-bordered">
+        <tr>
+            <td>Môn học</td>
+            <td>Kỳ học</td>
+            <td>Số tiết</td>
+            <td>Lớp học</td>
+            <td>Phòng học</td>
+            <td>Giáo viên</td>
+            <td>Ngày bắt đầu</td>
+            <td>Ngày kết thúc</td>
+            <td>Thứ</td>
+            <td>Tiết bắt đầu</td>
+        </tr>
+        @foreach (var gr in Model.GroupBy(q => q.IDCTDT))
+        {
+            <tr>
+                <td rowspan="@(gr.Count() + 1)">@gr.First().CTDT.MonHoc.TenMonHoc</td>
+                <td rowspan="@(gr.Count() + 1)">@gr.First().CTDT.KyHoc</td>
+                <td rowspan="@(gr.Count() + 1)">@gr.First().CTDT.MonHoc.SoTiet</td>
+                <td colspan="7"></td>
+            </tr>
+            foreach (var item in gr)
+            {
+                <tr>
+                    <td>
+                        @Html.Hidden($"[{i}].IDInfoKyHoc", item.IDInfoKyHoc)
+                        @Html.Hidden($"[{i}].IDLopDT", item.IDLopDT)
+                        @Html.Hidden($"[{i}].IDCTDT", item.IDCTDT)
+                        <label>
+                            <input type="checkbox" name="@($"[{i}].IDLopHoc")" value="@item.IDLopHoc" /> @item.LopHoc.TenLopHoc
+                        </label>
+                    </td>
+                    <td>@Html.DropDownList($"[{i}].IDPhongHoc", ViewBag.IDPhongHocs as SelectList, "----------")</td>
+                    <td>@Html.DropDownList($"[{i}].IDGiaoVien", ViewBag.IDGiaoViens as SelectList, "----------")</td>
+                    <td><input type="date" name="@($"[{i}].TimeStart")" value="" /></td>
+                    <td><input type="date" name="@($"[{i}].TimeEnd")" value="" /></td>
+                    <td>
+                        <select name="@($"[{i}].Date")">
+                            <option value="">----------</option>
+                            <option value="2">Thứ 2</option>
+                            <option value="3">Thứ 3</option>
+                            <option value="4">Thứ 4</option>
+                            <option value="5">Thứ 5</option>
+                            <option value="6">Thứ 6</option>
+                            <option value="7">Thứ 7</option>
+                            <option value="8">Chủ nhật</option>
+                        </select>
+                        @if (item.IDLopDT > 0)
+                        {
+                            <script>
+                                $('[name="@($"[{i}].IDLopHoc")"]')[0].checked = true;
+                                $('[name="@($"[{i}].IDPhongHoc")"]').val(@item.IDPhongHoc);
+                                $('[name="@($"[{i}].IDGiaoVien")"]').val(@item.IDGiaoVien);
+                                $('[name="@($"[{i}].TimeStart")"]').val('@(item.TimeStart?.ToString("yyyy-MM-dd"))');
+                                $('[name="@($"[{i}].TimeEnd")"]').val('@(item.TimeEnd?.ToString("yyyy-MM-dd"))');
+                                $('[name="@($"[{i}].Date")"]').val(@item.Date);
+                            </script>
+                        }
+                    </td>
+                    <td>@Html.TextBox($"[{i}].Tiet", item.Tiet, new { placeholder = "Tiết" })</td>
+                </tr>
+                i++;
+            }
+        }
+    </table>
+    <button>Save</button>
+}

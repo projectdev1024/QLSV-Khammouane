@@ -1,0 +1,30 @@
+﻿@model  IEnumerable<WebsiteMVC.Models.TinTuc>
+
+
+<div class="news-bfn">
+    <div class="new-notifies-mt even first">
+        @foreach (var item in Model.Take(1))
+        {
+            <div class="new-notifies-img">
+                <a href=" @Url.Action("ChiTiet","TinTuc",new { item.IDTinTuc})">
+                    <img src="@item.Image" style="height: 235px" />
+                </a>
+            </div>
+            <div class="">
+                <h5 class="new-notifies-image-title">
+                    <a class="image-title" href=" @Url.Action("ChiTiet","TinTuc",new { item.IDTinTuc})"> @item.TomTat </a>
+                </h5>
+            </div>
+        }
+    </div>
+    <div class="new-notifies-details-link">
+        <ul class="new-notifies-ul3">
+            @foreach (var item in Model.Skip(1))
+            {
+                <li class="new-notifies-item">
+                    <a class="new-notifies-item-link" href="@Url.Action("ChiTiet","TinTuc",new { item.IDTinTuc})"> @item.TomTat </a>
+                </li>
+            }
+        </ul> <a class="xemToanBo" href="@Url.Action("Index","TinTuc")"> <img />> Xem t&#7845;t c&#7843; </a>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebsiteMVC.Models.CTDT>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin: 0 11.13%">
+    <hr />
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-md-6 col-lg-offset-3">
+                NGÀNH HỌC:
+                @Html.DropDownList("IDNganhHoc", ViewBag.IDNganhHocs as SelectList, "------------")
+                <button class="btn btn-default" style="margin-bottom: 10px"><i class="fa fa-eye"></i> Xem</button>
+            </div>
+        </div>
+    }
+
+    <table class="table table-bordered">
+        <tr>
+            <td>MÔN HỌC</td>
+            <td>SỐ TÍN CHỈ</td>
+            <td>SỐ TIẾT</td>
+            <td>KÌ HỌC</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MonHoc.TenMonHoc</td>
+                <td>@item.MonHoc.SoTC</td>
+                <td>@item.MonHoc.SoTiet</td>
+                <td>@item.KyHoc</td>
+            </tr>
+        }
+    </table>
+
+</div>

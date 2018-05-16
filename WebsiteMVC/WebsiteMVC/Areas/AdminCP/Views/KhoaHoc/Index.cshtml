@@ -1,0 +1,122 @@
+﻿@model IEnumerable<WebsiteMVC.Models.KhoaHoc>
+
+@{
+    ViewBag.Title = "KHÓA HỌC";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+}
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit"></i>@ViewBag.Title
+        </div>
+    </div>
+    <div class="portlet-body">
+        <label class="green center input-group input-group-addon">TÙY CHỌN LỌC</label>
+        <br />
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon3">NGÀNH HỌC</span>
+                        @Html.DropDownList("IDNganhHoc", ViewBag.IDNganhHocs as SelectList, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon3">NĂM HỌC</span>
+                        @Html.DropDownList("IDNamHoc", ViewBag.IDNamHocs as SelectList, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon3">KÌ HỌC</span>
+                        @Html.DropDownList("IDKyHoc", ViewBag.IDKyHocs as SelectList, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2"><button class="btn green form-control" name="LOC" value="true"><i class="fa fa-filter"></i> LỌC</button></div>
+                <div class="col-md-2"><button class="btn green-meadow form-control" name="LOC" value="false"><i class="fa fa-pencil"></i> Sửa</button></div>
+            </div>
+        }
+        <hr />
+        <table class="table table-bordered" id="table">
+            <thead>
+                <tr>
+                    <th>
+                        LỚP HỌC
+                    </th>
+                    <th>
+                        MÔN HỌC
+                    </th>
+                    <th>
+                        GIÁO VIÊN
+                    </th>
+                    <th>
+                        SINH VIÊN TỐI ĐA
+                    </th>
+                    <th>
+                        HỌC PHÍ
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LopHoc.TenLopHoc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CTDT.MonHoc.TenMonHoc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GiaoVien.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaxStudent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HocPhi)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section css{
+    <link href="/Content/theme/assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section js{
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+    <script>
+        $("#table").DataTable();
+
+        function delete_object(target, id) {
+            if (confirm("Bạn có muốn xóa không?")) {
+                $.ajax({
+                    url: "@Url.Action("Delete")",
+                    type: "POST",
+                    data: { id: id },
+                    success: function (d) {
+                        if (d) {
+                            $(target).closest("tr").remove();
+                        } else {
+                            alert("Xóa thất bại");
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+}
+

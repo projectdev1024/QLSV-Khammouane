@@ -1,0 +1,117 @@
+﻿@model IEnumerable<WebsiteMVC.Models.SinhVien>
+
+@{
+    ViewBag.Title = "Danh sách sinh viên";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAmin.cshtml";
+}
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit"></i>@ViewBag.Title
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit")" id="sample_editable_1_new" class="btn green">
+                            Thêm <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table table-bordered" id="table">
+            <thead>
+                <tr>
+                    <th>
+                        Ảnh đại diện
+                    </th>
+                    <th>
+                        Họ tên
+                    </th>
+                    <th>
+                        Địa chỉ
+                    </th>
+                    <th>
+                        Ngày sinh
+                    </th>
+                    <th>
+                        Năm nhập học
+                    </th>
+                    <th>
+                        Lớp học hiện tại
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.Avatar" style="max-height: 40px" alt="@item.Avatar" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adress)
+                        </td>
+                        <td>
+                            @(item.Birthday?.ToString("dd/MM/yyyy"))
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.YearJoin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LopHoc.TenLopHoc)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit",new { id = item.IDSinhVien})" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                            <span onclick="delete_object(this,'@item.IDSinhVien')" class="btn btn-warning"><i class="fa fa-trash-o"></i></span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+
+@section css{
+    <link href="/Content/theme/assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section js{
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/Content/theme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+    <script>
+        $("#table").DataTable();
+
+        function delete_object(target, id) {
+            if (confirm("Bạn có muốn xóa không?")) {
+                $.ajax({
+                    url: "@Url.Action("Delete")",
+                    type: "POST",
+                    data: { id: id },
+                    success: function (d) {
+                        if (d) {
+                            $(target).closest("tr").remove();
+                        } else {
+                            alert("Xóa thất bại");
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+}
+
